@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TURBO CHAMEAUX.io - Course</title>
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <!-- HUD (Interface de jeu) -->
+    <div id="hud">
+        <div class="hud-top">
+            <div class="player-info">
+                <span id="playerName">Joueur</span>
+                <span id="playerColor" class="color-dot"></span>
+            </div>
+            <div class="speed-ometer">
+                <span id="speed">0</span> km/h
+            </div>
+            <div class="position">
+                Position: <span id="position">1</span>/<span id="totalPlayers">1</span>
+            </div>
+        </div>
+
+        <div class="hud-bottom">
+            <div class="lap-counter">
+                Tour: <span id="currentLap">1</span>/<span id="totalLaps">3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Écran de chargement -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="camel-loading">🐪</div>
+            <h2>Chargement du désert...</h2>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <p id="loadingText">Préparation de la piste...</p>
+        </div>
+    </div>
+
+    <!-- Container du jeu 3D -->
+    <div id="game-container"></div>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Modules du jeu -->
+    <script src="js/game/scene.js"></script>
+    <script src="js/game/camel.js"></script>
+    <script src="js/game/track.js"></script>
+    <script src="js/game/controls.js"></script>
+    <script src="js/game/camera.js"></script>
+    <script src="js/game/network.js"></script>
+    <script src="js/game/main.js"></script>
+</body>
+</html>

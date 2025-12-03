@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TURBO CHAMEAUX.io - Lobby</title>
+    <link rel="stylesheet" href="css/lobby.css">
+</head>
+<body>
+    <div class="background">
+        <div class="dune"></div>
+        <div class="dune"></div>
+        <div class="dune"></div>
+    </div>
+
+    <div class="lobby-container">
+        <div class="camel-icon">🐪</div>
+        <h1>TURBO CHAMEAUX.io</h1>
+        <p class="subtitle">Préparez-vous pour la course du désert !</p>
+
+        <form id="lobbyForm">
+            <div class="form-group">
+                <label for="pseudo">Pseudo</label>
+                <input 
+                    type="text" 
+                    id="pseudo" 
+                    name="pseudo" 
+                    placeholder="Entrez votre pseudo..." 
+                    maxlength="15"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="camelColor">Couleur du chameau</label>
+                <div class="color-picker-container">
+                    <input 
+                        type="color" 
+                        id="camelColor" 
+                        name="camelColor" 
+                        value="#8B4513"
+                    >
+                    <div class="color-preview" id="colorPreview">#8B4513</div>
+                </div>
+            </div>
+
+            <button type="submit" class="play-button" id="playButton">
+                🏁 JOUER 🏁
+            </button>
+
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+    </div>
+
+    <script src="js/lobby.js"></script>
+</body>
+</html>

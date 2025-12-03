@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f4a460 0%, #daa520 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Dunes animées en arrière-plan */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.dune {
+    position: absolute;
+    bottom: -50px;
+    width: 200%;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: wave 20s ease-in-out infinite;
+}
+
+.dune:nth-child(1) { 
+    animation-delay: 0s; 
+    left: -50%; 
+}
+
+.dune:nth-child(2) { 
+    animation-delay: -5s; 
+    left: -25%; 
+    opacity: 0.7; 
+}
+
+.dune:nth-child(3) { 
+    animation-delay: -10s; 
+    left: 0%; 
+    opacity: 0.5; 
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+}
+
+/* Container principal */
+.lobby-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 60px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+}
+
+/* Titre */
+h1 {
+    font-size: 3em;
+    color: #d2691e;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: #8b4513;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+/* Emoji chameau */
+.camel-icon {
+    font-size: 4em;
+    margin-bottom: 30px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Formulaire */
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    color: #8b4513;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 3px solid #daa520;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+}
+
+/* Color picker custom */
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+input[type="color"] {
+    width: 80px;
+    height: 50px;
+    border: 3px solid #daa520;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="color"]:hover {
+    transform: scale(1.1);
+    border-color: #ff8c00;
+}
+
+.color-preview {
+    flex: 1;
+    padding: 15px;
+    border: 3px solid #daa520;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #8b4513;
+    background: #fff;
+    text-align: center;
+}
+
+/* Bouton jouer */
+.play-button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6347 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 8px 20px rgba(255, 99, 71, 0.4);
+    margin-top: 10px;
+}
+
+.play-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 99, 71, 0.6);
+    background: linear-gradient(135deg, #ff6347 0%, #ff8c00 100%);
+}
+
+.play-button:active {
+    transform: translateY(0);
+}
+
+.play-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Messages d'erreur */
+.error-message {
+    color: #d32f2f;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: none;
+    background: #ffebee;
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #d32f2f;
+}
+
+.error-message.show {
+    display: block;
+}
