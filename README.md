@@ -1,193 +1,193 @@
-<!-- Full Color Cyberpunk Pixel-Art README -->
+# 🐪 TURBO CHAMEAUX.io - Client
 
-<h1 align="center" style="
-  font-size: 60px;
-  font-weight: 900;
-  background: linear-gradient(90deg, #ff006e, #ffbe0b, #00f5d4, #9b5de5);
-  -webkit-background-clip: text;
-  color: transparent;
-">
+## 📁 Structure des fichiers
 
-🚀 MARIO KART 2D --- CYBERPIXEL EDITION 🎮
+```
+client/
+│
+├── index.html              ✅ Page du lobby
+├── game.html               ✅ Page du jeu 3D
+│
+├── css/
+│   ├── lobby.css          ✅ Styles du lobby
+│   └── game.css           ✅ Styles du jeu
+│
+├── js/
+│   ├── lobby.js           ✅ Logique du lobby
+│   │
+│   ├── game/
+│   │   ├── main.js        ✅ Point d'entrée du jeu
+│   │   ├── scene.js       ✅ Configuration Three.js
+│   │   ├── camel.js       ✅ Modèle 3D du chameau
+│   │   ├── track.js       ✅ Circuit de course
+│   │   ├── controls.js    ✅ Contrôles clavier
+│   │   ├── camera.js      ✅ Caméra 3ème personne
+│   │   └── network.js     ✅ Communication WebSocket
+│   │
+│   └── lib/
+│       └── socket.io.min.js  ⏳ À télécharger
+│
+└── assets/
+    ├── sounds/            📂 Sons du jeu (vide)
+    └── textures/          📂 Textures (vide)
+```
 
-</h1>
+## 🚀 Installation
 
-<p align="center">
+### 1. Télécharger Socket.IO (optionnel pour l'instant)
 
-<img src="https://img.shields.io/badge/Style-Cyberpunk%20PixelArt-f72585?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Mode-Arcade%20Rétro-7209b7?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Status-In%20Dev-3a0ca3?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Multi-Local-4361ee?style=for-the-badge" />
+# Créer le dossier lib
+mkdir -p client/js/lib
 
-</p>
+# Télécharger Socket.IO
+curl -o client/js/lib/socket.io.min.js \
+  https://cdn.socket.io/4.5.4/socket.io.min.js
 
-------------------------------------------------------------------------
+### 2. Tester localement
 
-<h2 style="
-  background: linear-gradient(90deg, #ffbe0b, #fb5607);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-✨ Présentation du Jeu
-</h2>
+Ouvrez simplement `client/index.html` dans votre navigateur pour tester le lobby.
 
-Un projet explosif mélangeant **Nintendo**, **cyberpunk**, **pixel
-art**, néons et gameplay arcade.\
-Prépare-toi à dériver dans des circuits lumineux et futuristes, armé de
-carapaces néon et de turbo électriques ⭐.
+**Note**: Le jeu 3D nécessite un serveur HTTP pour fonctionner correctement (à cause de Three.js et des imports de modules).
 
-------------------------------------------------------------------------
+## 🎮 Fonctionnalités
 
-<h2 style="
-  background: linear-gradient(90deg, #00f5d4, #9b5de5);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-🔥 Fonctionnalités
-</h2>
--   🔵 Carapace bleue néon\
--   🍌 Bananes cyber-pixel\
--   ⚡ Turbo électrique (effet glow)\
--   🎯 Missiles RGB\
--   🗺️ Plusieurs circuits néon (ville, ruines, circuit arc-en-ciel
-    2D...)\
--   🎮 Multijoueur local\
--   🎶 Musiques synthwave & 16 bits\
--   💥 Collisions dynamiques
+### ✅ Lobby (index.html)
+- Input pseudo (3-15 caractères)
+- Sélecteur de couleur pour le chameau
+- Sauvegarde dans localStorage
+- Validation en temps réel
+- Design désert animé
 
-------------------------------------------------------------------------
+### ✅ Jeu 3D (game.html)
+- Rendu Three.js avec chameau low poly
+- Circuit ovale avec bordures rouges
+- Contrôles clavier (ZQSD / Flèches)
+- Caméra 3ème personne fluide
+- HUD avec vitesse, position, tours
+- Écran de chargement animé
+- Décorations du désert (cactus, rochers)
 
-<h2 style="
-  background: linear-gradient(90deg, #4cc9f0, #4361ee);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-🛠️ Technologies
-</h2>
--   Godot / Unity / Pygame\
--   C# / Python / GDScript\
--   Aseprite (Pixel art)\
--   Git & GitHub (GitFlow)
+## 🎯 Contrôles du jeu
 
-------------------------------------------------------------------------
+| Touche | Action |
+|--------|--------|
+| ↑ / Z / W | Avancer |
+| ↓ / S | Reculer |
+| ← / Q / A | Tourner à gauche |
+| → / D | Tourner à droite |
+| Espace | Boost (à venir) |
 
-<h2 style="
-  background: linear-gradient(90deg, #f72585, #7209b7);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-📦 Installation
-</h2>
-git clone https://github.com/tonpseudo/mario-kart-2d.git
-cd mario-kart-2d
+## 🔧 Architecture technique
 
-Installer les dépendances :
+### Classes JavaScript
 
-pip install -r requirements.txt
-# ou
-npm install
+#### `Game` (main.js)
+- Gère le cycle de vie du jeu
+- Coordonne tous les modules
+- Boucle de rendu principale
 
-------------------------------------------------------------------------
+#### `GameScene` (scene.js)
+- Initialise Three.js
+- Configure la scène, caméra, renderer
+- Gère les lumières
 
-<h2 style="
-  background: linear-gradient(90deg, #3a0ca3, #4cc9f0);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-▶️ Lancer le Jeu
-</h2>
-python main.py
-# ou
-npm run start
-# ou
-godot .
+#### `Camel` (camel.js)
+- Modèle 3D low poly
+- Physique de mouvement
+- Animation de rebond
 
-------------------------------------------------------------------------
+#### `Track` (track.js)
+- Circuit ovale
+- Bordures et décorations
+- Ligne de départ
 
-<h2 style="
-  background: linear-gradient(90deg, #00bbf9, #00f5d4);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-🎥 Screenshots & Animations
-</h2>
-<p align="center">
-<img src="https://media.tenor.com/2roX3uxz_68AAAAC/cyberpunk.gif" width="400" />
-</p>
-Ajoute vos GIF et screenshots ici :
+#### `Controls` (controls.js)
+- Gestion du clavier
+- Mapping des touches
+- État des inputs
 
-    /assets/screenshots/gameplay.gif
-    /assets/screenshots/menu.png
+#### `CameraController` (camera.js)
+- Vue 3ème personne
+- Interpolation fluide
+- Effet de shake
 
-------------------------------------------------------------------------
+#### `NetworkManager` (network.js)
+- WebSocket (à activer)
+- Synchronisation multijoueur
+- Gestion des autres joueurs
 
-<h2 style="
-  background: linear-gradient(90deg, #ff006e, #fb5607);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-👥 Équipe de Développement
-</h2>
-  Avatar   Dev     Rôle
-  -------- ------- -----------------------
-  🧑‍💻       Dev 1   Leader / Architecte
-  🎨       Dev 2   Pixel Artist / UI
-  ⚙️       Dev 3   Collisions & gameplay
-  💣       Dev 4   Items néon
-  🏎️       Dev 5   Circuits futuristes
+## 🌐 Intégration serveur
 
-------------------------------------------------------------------------
+Pour connecter le client au serveur Python :
 
-<h2 style="
-  background: linear-gradient(90deg, #ffbe0b, #ff006e);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-💬 Contribution
-</h2>
-✔ Pull Requests\
-✔ Issues\
-✔ Suggestions de maps\
-✔ Nouveaux items\
-✔ Optimisations gameplay
+1. **Dans `lobby.js`**, décommenter la section WebSocket :
+// Ligne 72-76
+const socket = io('http://localhost:5000');
+socket.emit('join_game', playerData);
+socket.on('connection_success', () => {
+    window.location.href = 'game.html';
+});
 
-------------------------------------------------------------------------
+2. **Dans `network.js`**, décommenter les événements :
+// Ligne 24: Connexion Socket.IO
+this.socket = io(this.serverUrl);
 
-<h2 style="
-  background: linear-gradient(90deg, #7209b7, #3a0ca3);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 36px;
-  font-weight: 800;
-">
-📜 Licence
-</h2>
-Projet éducatif. Aucun lien avec Nintendo.
+// Ligne 37: Configuration des listeners
+this.setupListeners();
 
-------------------------------------------------------------------------
+## 📦 Dépendances
 
-<h1 align="center" style="
-  font-size: 40px;
-  background: linear-gradient(90deg, #ff006e, #00f5d4);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 900;
-">
-⚡ READY TO RACE? ⚡
-</h1>
+- **Three.js r128** : Chargé via CDN dans game.html
+- **Socket.IO** : À charger pour le multijoueur (optionnel)
+
+## 🐛 Debug
+
+Ouvrir la console du navigateur (F12) pour voir :
+- Logs de chargement
+- Positions des joueurs
+- Événements réseau
+- Erreurs éventuelles
+
+## 🎨 Personnalisation
+
+### Changer les couleurs de la piste
+// Dans track.js, ligne 31
+const trackMaterial = new THREE.MeshLambertMaterial({ 
+    color: 0x8b7355  // Modifier cette valeur
+});
+
+### Ajuster la vitesse du chameau
+// Dans camel.js, ligne 17-18
+this.acceleration = 0.1;  // Accélération
+this.maxSpeed = 2;        // Vitesse max
+
+### Modifier la caméra
+// Dans camera.js, ligne 9-11
+this.distance = 12;        // Distance
+this.height = 5;           // Hauteur
+this.lookAheadDistance = 3; // Look ahead
+
+## 📝 TODO
+
+- [ ] Télécharger Socket.IO
+- [ ] Connecter au serveur Python
+- [ ] Ajouter des sons (collision)
+- [ ] Implémenter le système de boost
+- [ ] Ajouter des items sur la piste
+- [ ] Système de tours/checkpoints
+- [ ] Écran de fin de course
+- [ ] Rejouer / Quitter
+
+## 🆘 Support
+
+Si vous avez des questions :
+1. Vérifiez la console du navigateur (F12)
+2. Assurez-vous que Three.js est bien chargé
+3. Testez d'abord sans serveur (mode solo)
+4. Activez le serveur Python pour le multijoueur
+
+---
+
+**Version**: 1.0.0  
+**Statut**: ✅ Prêt pour intégration serveur  
+**Testé**: Chrome, Firefox, Safari
